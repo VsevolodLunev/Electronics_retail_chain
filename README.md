@@ -40,7 +40,7 @@ API с ограничениями доступа
 
 1. Клонирование репозитория
 
-git clone <repository-url>
+git clone https://github.com/VsevolodLunev/Electronics_retail_chain.git
 cd Electronics_retail_chain
 
 2. Установка Poetry (если не установлен)
