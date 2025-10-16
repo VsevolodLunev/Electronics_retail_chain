@@ -1,0 +1,64 @@
+# Обязательно добавлять в Git
+!config
+!networknode
+!.env.sample
+!confest.py
+!manage.py
+!poetry.lock
+!pyproject.toml
+!.flake8
+!.gitignore
+!conftest.py
+!pytest.ini
+!README.md
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media/
+
+# Environment variables
+.env
+.venv
+.env.local
+.env.production
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database (except for PostgreSQL)
+*.db
+
+# Static files
+staticfiles/static/
+static/
+
+
+# Logs
+logs/
+*.log
+
+# Backup files
+backup/
+*.backup
+
+# Test coverage
+htmlcov/
+.coverage
+.coverage.*

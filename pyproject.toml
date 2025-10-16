@@ -1,0 +1,50 @@
+[project]
+name = "electronics-retail-chain"
+version = "0.1.0"
+description = "Веб-приложение для управления розничной сетью по продаже электроники"
+authors = [
+    {name = "VsevolodLunev",email = "126673517+VsevolodLunev@users.noreply.github.com"}
+]
+readme = "README.md"
+packages = [
+    {include = "config"},
+    {include = "networknode"}
+]
+package-mode = false
+requires-python = ">=3.13"
+dependencies = [
+    "django (>=5.2.7,<6.0.0)",
+    "djangorestframework (>=3.16.1,<4.0.0)",
+    "django-filter (>=25.2,<26.0)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)",
+    "whitenoise (>=6.11.0,<7.0.0)",
+    "ipdb (>=0.13.13,<0.14.0)",
+    "django-debug-toolbar (>=6.0.0,<7.0.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)",
+    "flake8 (>=7.3.0,<8.0.0)",
+    "black (>=25.9.0,<26.0.0)"
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+python_paths = ["."]
+addopts = [
+    "--tb=short",
+    "--strict-markers",
+    "--strict-config",
+    "--cov=networknode",
+    "--cov-report=term-missing"
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^7.0.0"
