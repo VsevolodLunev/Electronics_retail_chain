@@ -51,6 +51,7 @@ API с ограничениями доступа
 
 
     git clone https://github.com/VsevolodLunev/Electronics_retail_chain.git
+
     cd Electronics_retail_chain
 
 2. Установка Poetry (если не установлен)
@@ -87,6 +88,7 @@ API с ограничениями доступа
 
 
     python manage.py makemigrations
+
     python manage.py migrate
 
 8. Создание суперпользователя
@@ -150,20 +152,27 @@ API Endpoints
 Основные endpoints:
 
 GET /api/network-nodes/ - список всех узлов сети
+
 POST /api/network-nodes/ - создание нового узла
+
 GET /api/network-nodes/{id}/ - получение узла по ID
+
 PUT /api/network-nodes/{id}/ - обновление узла
+
 DELETE /api/network-nodes/{id}/ - удаление узла
 
 Дополнительные actions:
 
 POST /api/network-nodes/{id}/clear_debt/ - очистка задолженности
+
 GET /api/network-nodes/{id}/dependent_nodes/ - получение зависимых узлов
 
 Фильтрация:
 
 По стране: ?country=Россия
+
 По городу: ?city=Москва
+
 По типу узла: ?node_type=factory
 
 Админ-панель доступна по адресу: 
