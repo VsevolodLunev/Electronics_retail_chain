@@ -1,6 +1,7 @@
-from django.db import models
-from django.core.validators import MinValueValidator
 from decimal import Decimal
+
+from django.core.validators import MinValueValidator
+from django.db import models
 
 
 class NetworkNode(models.Model):
@@ -11,20 +12,15 @@ class NetworkNode(models.Model):
         ("retail", "Розничная сеть"),
         ("entrepreneur", "Индивидуальный предприниматель"),
     ]
-
     name = models.CharField(max_length=255, verbose_name="Название")
     node_type = models.CharField(
         max_length=20, choices=NODE_TYPES, verbose_name="Тип звена"
     )
-
-    # Контактная информация
     email = models.EmailField(verbose_name="Email")
     country = models.CharField(max_length=100, verbose_name="Страна")
     city = models.CharField(max_length=100, verbose_name="Город")
     street = models.CharField(max_length=255, verbose_name="Улица")
     house_number = models.CharField(max_length=20, verbose_name="Номер дома")
-
-    # Ссылка на поставщика
     supplier = models.ForeignKey(
         "self",
         on_delete=models.SET_NULL,
@@ -33,8 +29,6 @@ class NetworkNode(models.Model):
         related_name="dependent_nodes",
         verbose_name="Поставщик",
     )
-
-    # Задолженность
     debt = models.DecimalField(
         max_digits=15,
         decimal_places=2,
@@ -42,8 +36,6 @@ class NetworkNode(models.Model):
         default=0.00,
         verbose_name="Задолженность перед поставщиком",
     )
-
-    # Время создания
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Время создания")
 
     class Meta:
@@ -55,14 +47,12 @@ class NetworkNode(models.Model):
 
     def __str__(self):
         """Строковое представление объекта."""
-
         return f"{self.get_node_type_display()}: {self.name}"
 
     @property
     def hierarchy_level(self):
         """
         Вычисляет уровень иерархии звена в сети.
-
         Returns:
             int: Уровень иерархии (0 для завода, 1+ для остальных)
         """
@@ -77,8 +67,6 @@ class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name="Название")
     model = models.CharField(max_length=255, verbose_name="Модель")
     release_date = models.DateField(verbose_name="Дата выхода на рынок")
-
-    # Связь с узлом сети
     network_node = models.ForeignKey(
         NetworkNode,
         on_delete=models.CASCADE,
@@ -94,5 +82,4 @@ class Product(models.Model):
 
     def __str__(self):
         """Строковое представление объекта."""
-
         return f"{self.name} ({self.model})"

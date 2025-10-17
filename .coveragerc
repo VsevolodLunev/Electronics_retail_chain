@@ -1,0 +1,14 @@
+[run]
+omit =
+    */venv/*
+    networknode/migrations/*
+    networknode/test_models.py
+    networknode/test_views.py
+    networknode/__init__.py
+    */config/*
+    */test_basic.py
+    */conftest.py
+    networknode/apps.py
+    networknode/filters.py
+    networknode/urls.py
+    networknode/models.py

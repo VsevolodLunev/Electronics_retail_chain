@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -24,6 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "drf_spectacular",
     "django_filters",
     "networknode",
 ]
@@ -83,7 +85,39 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 20,
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
+
+# DRF Spectacular configuration
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Electronics Retail Chain API",
+    "DESCRIPTION": """
+    API для управления розничной сетью по продаже электроники.
+
+    ## Функциональность
+
+    - Управление иерархической структурой сети (заводы, розничные сети, ИП)
+    - Управление продуктами
+    - Фильтрация по стране, городу и типу узла
+    - Автоматический расчет уровня иерархии
+
+    ## Аутентификация
+
+    API требует аутентификации. Используйте:
+    - Сессионную аутентификацию (через браузер)
+    - Basic аутентификацию
+    """,
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "persistAuthorization": True,
+        "displayOperationId": True,
+    },
+    "COMPONENT_SPLIT_REQUEST": True,
+    "SCHEMA_PATH_PREFIX": r"/api/",
+}
+
 # Internationalization
 LANGUAGE_CODE = "ru-ru"
 TIME_ZONE = "UTC"
@@ -101,3 +135,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Whitenoise configuration for static files
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Security settings for production
+if not DEBUG:
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
