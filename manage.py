@@ -12,9 +12,7 @@ if project_path not in sys.path:
 def main():
     """
     Основная функция для выполнения административных задач Django.
-
     Загружает переменные окружения и выполняет команды Django.
-
     Raises:
         ImportError: Если Django не установлен или не доступен в PYTHONPATH
     """

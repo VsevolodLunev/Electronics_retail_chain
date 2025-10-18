@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
+
 from .models import NetworkNode, Product
 
 
@@ -61,7 +62,6 @@ class NetworkNodeAdmin(admin.ModelAdmin):
 
     def supplier_link(self, obj):
         """Создает HTML-ссылку на страницу поставщика в админке."""
-
         if obj.supplier:
             url = reverse(
                 "admin:networknode_networknode_change", args=[obj.supplier.id]
@@ -73,21 +73,18 @@ class NetworkNodeAdmin(admin.ModelAdmin):
 
     def hierarchy_level_display(self, obj):
         """Отображает уровень иерархии в админке."""
-
         return obj.hierarchy_level
 
     hierarchy_level_display.short_description = "Уровень иерархии"
 
     def dependent_nodes_count(self, obj):
         """Отображает количество зависимых узлов."""
-
         return obj.dependent_nodes.count()
 
     dependent_nodes_count.short_description = "Зависимые узлы"
 
     def clear_debt(self, request, queryset):
         """Admin action для очистки задолженности у выбранных объектов."""
-
         updated_count = queryset.update(debt=0)
         self.message_user(
             request, f"Задолженность очищена для {updated_count} объектов"

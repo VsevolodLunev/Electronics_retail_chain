@@ -9,8 +9,9 @@
 !.flake8
 !.gitignore
 !conftest.py
-!pytest.ini
 !README.md
+!test_basic.py
+!.coveragerc
 
 # Django
 *.log
@@ -46,9 +47,9 @@ Thumbs.db
 *.db
 
 # Static files
-staticfiles/static/
+/static/
 static/
-
+/static
 
 # Logs
 logs/

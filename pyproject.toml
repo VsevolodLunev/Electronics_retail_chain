@@ -22,24 +22,11 @@ dependencies = [
     "django-debug-toolbar (>=6.0.0,<7.0.0)",
     "python-dotenv (>=1.1.1,<2.0.0)",
     "flake8 (>=7.3.0,<8.0.0)",
-    "black (>=25.9.0,<26.0.0)"
-]
-
-[tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "config.settings"
-python_files = ["tests.py", "test_*.py", "*_tests.py"]
-python_paths = ["."]
-addopts = [
-    "--tb=short",
-    "--strict-markers",
-    "--strict-config",
-    "--cov=networknode",
-    "--cov-report=term-missing"
-]
-markers = [
-    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
-    "integration: marks tests as integration tests",
-    "unit: marks tests as unit tests"
+    "black (>=25.9.0,<26.0.0)",
+    "drf-spectacular (>=0.28.0,<0.29.0)",
+    "pytest (>=8.4.2,<9.0.0)",
+    "pytest-django (>=4.11.1,<5.0.0)",
+    "isort (>=7.0.0,<8.0.0)"
 ]
 
 [build-system]
